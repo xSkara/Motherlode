@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://nant.sourceforge.net/nightly/2011-05-08-0.91/nant.xsd"
+         name="transport-view" default="build-all-configs">
+
+  <include buildfile="properties.include" />
+  <include buildfile="common-targets.include" />
+  
+  <target name="build-all-configs" depends="svn-get-revision">
+    <property name="project.config" value="Debug" />
+    <property name="dir.build" value="${path::get-full-path('build/') + project.config}" />
+    <call target="build" />
+    <property name="project.config" value="Release" />
+    <property name="dir.build" value="${path::get-full-path('build/') + project.config}" />
+    <call target="build" />
+    <property name="dir.build" value="${path::get-full-path('build')}" />
+    <!--<call target="deploy-lib" />-->
+  </target>     
+
+  <target name="create-tag" depends="build-all-configs">
+    <exec program="svn.exe"
+          commandline="info --xml --trust-server-cert --no-auth-cache --non-interactive --username ${svn.username} --password ${svn.password}"
+          output="_info.xml" />
+    <xmlpeek file="_info.xml"
+             xpath="/info/entry/repository/root"
+             property="svn.rootUrl" />
+    <echo message="The Subversion root URI is: ${svn.rootUrl}" />
+    <exec program="svn.exe"
+          commandline="info --xml --trust-server-cert --no-auth-cache --non-interactive --username ${svn.username} --password ${svn.password} ${svn.rootUrl}"
+          output="_info.xml" />
+    <xmlpeek file="_info.xml"
+             xpath="/info/entry/@revision"
+             property="svn.revision" />
+    <delete file="_info.xml" />
+    <echo message="Using Subversion revision number: ${svn.revision}" />
+    <exec program="svn.exe"
+          commandline="cp --trust-server-cert --no-auth-cache --non-interactive --username ${svn.username} --password ${svn.password} build ..\tags\${svn.revision}"
+          verbose="true" />
+  </target>
+  
+  <target name="build" description="Builds the binaries for the current configuration">
+    <echo message="Building version ${project.version}" />
+    <echo message="Building platform ${project.platform}" />
+    <call target="set-version" />
+    <property name="project.out" value="bin\${project.config}" />
+    <!-- build open-vcdiff-dotnet -->
+      <!--<msbuild project="src\open-vcdiff-dotnet\open-vcdiff-dotnet.sln" target="Build" verbosity="minimal">
+      <property name="Configuration" value="${project.config}" />
+      <property name="Platform" value="Win32" />
+    </msbuild>
+    <copy file="src\open-vcdiff-dotnet\${project.config}\vcdiff-dotnet.dll" todir="src\open-vcdiff-dotnet\out\x86"
+          overwrite="true" />
+    <msbuild project="src\open-vcdiff-dotnet\open-vcdiff-dotnet.sln" target="Build" verbosity="minimal">
+      <property name="Configuration" value="${project.config}" />
+      <property name="Platform" value="x64" />
+    </msbuild>
+    <copy file="src\open-vcdiff-dotnet\${project.config}\vcdiff-dotnet.dll" todir="src\open-vcdiff-dotnet\out\x64"
+          overwrite="true" />-->
+    <!-- build Motherlode -->
+    <msbuild project="src\Motherlode.sln" target="Build" verbosity="minimal">
+      <property name="Configuration" value="${project.config}" />
+      <property name="Platform" value="${project.platform}" />
+    </msbuild>
+    <mkdir dir="${dir.build}" failonerror="false" />
+    <!-- copy build output -->
+    <copy todir="${dir.build}" overwrite="true">
+      <fileset basedir="${path::combine('src\Motherlode.Common', project.out)}" failonempty="true">
+        <include name="Motherlode.Common.dll"/>
+        <include name="Motherlode.Common.pdb"/>
+        <include name="Motherlode.Common.xml"/>
+      </fileset>
+    </copy>
+    <copy todir="${dir.build}" overwrite="true">
+      <fileset basedir="${path::combine('src\Motherlode.Data', project.out)}" failonempty="true">
+        <include name="Motherlode.Data.dll"/>
+        <include name="Motherlode.Data.pdb"/>
+        <include name="Motherlode.Data.xml"/>
+      </fileset>
+    </copy>
+    <copy todir="${dir.build}" overwrite="true">
+      <fileset basedir="${path::combine('src\Motherlode.Data.NHibernate', project.out)}" failonempty="true">
+        <include name="Motherlode.Data.NHibernate.dll"/>
+        <include name="Motherlode.Data.NHibernate.pdb"/>
+        <include name="Motherlode.Data.NHibernate.xml"/>
+      </fileset>
+    </copy>
+    <copy todir="${dir.build}" overwrite="true">
+      <fileset basedir="${path::combine('src\Motherlode.Log4Net', project.out)}" failonempty="true">
+        <include name="Motherlode.Log4Net.dll"/>
+        <include name="Motherlode.Log4Net.pdb"/>
+        <include name="Motherlode.Log4Net.xml"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="deploy-lib">
+    <property name="dir.build.lib" value="${path::combine(dir.build, 'lib')}" />
+    <mkdir dir="${dir.build.lib}" failonerror="false" />
+    <copy todir="${dir.build.lib}" overwrite="true">
+      <fileset basedir="${path::combine('src\Motherlode.Data.NHibernate', project.out)}" failonempty="true">
+        <include name="Castle.Core.*" />
+        <include name="FluentNHibernate.*" />
+        <include name="Iesi.Collections.*" />
+        <include name="NHibernate.ByteCode.Castle.*" />
+        <include name="Ninject.*" />
+        <include name="NHibernate.*" />
+        <include name="Trinet.Core.IO.Ntfs.*" />
+      </fileset>
+    </copy>
+    <copy todir="${dir.build.lib}" overwrite="true">
+      <fileset basedir="${path::combine('src\Motherlode.Log4Net', project.out)}" failonempty="true">
+        <include name="log4net.*" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="zip-package" depends="build">
+    <mkdir dir="${dir.packages}" failonerror="false" />
+    <property name="package-name" value="Motherlode-${project.version}.zip" overwrite="true" />
+    <zip zipfile="${path::combine(dir.packages, package-name)}">
+      <fileset basedir="${dir.build}" prefix="Motherlode">
+        <include name="**/*" />
+        <exclude name="**/*.pdb" />
+      </fileset>
+    </zip>
+  </target>
+
+  <target name="clean" description="Cleans build directory and runs clean target for every solution.">
+    <!--<msbuild project="src\open-vcdiff-dotnet\open-vcdiff-dotnet.sln" target="Clean" verbosity="minimal">
+      <property name="Configuration" value="${project.config}" />
+      <property name="Platform" value="Win32" />
+    </msbuild>-->
+    <msbuild project="src\Motherlode.sln" target="Clean" verbosity="minimal">
+      <property name="Configuration" value="${project.config}" />
+      <property name="Platform" value="${project.platform}" />
+    </msbuild>
+    <delete failonerror="false" includeemptydirs="false">
+      <fileset basedir="${dir.build}">
+        <include name="**/*"/>
+      </fileset>
+    </delete>
+  </target>
+  
+  <target name="set-version">
+    <update-assembly-info>
+      <fileset>
+        <include name="src/**/AssemblyInfo.*" />
+      </fileset>
+      <attributes>
+        <attribute name="AssemblyCompany" value="${company.fullname}" />
+        <attribute name="AssemblyProduct" value="${project.name}" />
+        <attribute name="AssemblyCopyright" value="${company.copyright}" />
+        <attribute name="AssemblyVersion" value="${project.version}" />
+        <attribute name="AssemblyFileVersion" value="${project.version}" />
+        <attribute name="AssemblyInformationalVersion" value="${project.version}" />
+      </attributes>
+    </update-assembly-info> 
+  </target>
+</project>

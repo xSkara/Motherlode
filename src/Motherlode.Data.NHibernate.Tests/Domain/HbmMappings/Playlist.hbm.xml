@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Motherlode.Data.NHibernate.Tests"
+                   namespace="Motherlode.Data.NHibernate.Tests.Domain.Model">
+    <class name="Playlist">
+        <id name="Id" column="PlaylistId">
+            <generator class="identity" />
+        </id>
+
+        <property name="Name" />
+
+        <bag name="Tracks" table="PlaylistTrack">
+            <key column="PlaylistId" />
+            <many-to-many class="Track" column="TrackId" />
+        </bag>
+    </class>
+</hibernate-mapping>

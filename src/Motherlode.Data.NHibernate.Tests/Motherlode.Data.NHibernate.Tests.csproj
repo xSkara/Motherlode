@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24705AB3-45BA-49F6-975A-8F6EC4D02C12}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Motherlode.Data.NHibernate.Tests</RootNamespace>
+    <AssemblyName>Motherlode.Data.NHibernate.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\NHibernateConcepts.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\NHibernateConcepts.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=1.3.0.733, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Factory">
+      <HintPath>..\packages\Ninject.Extensions.Factory.3.0.1.0\lib\net40\Ninject.Extensions.Factory.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTestsEx">
+      <HintPath>..\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTestsEx.Mvc">
+      <HintPath>..\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cfg\TestFixtureBases\HiLoFluentConfigurationTestFixtureBase.cs" />
+    <Compile Include="Cfg\Providers\IdentityConfigurationProvider.cs" />
+    <Compile Include="Cfg\TestFixtureBases\IdentityFluentConfigurationTestFixtureBase.cs" />
+    <Compile Include="Cfg\Providers\HiLoConfigurationProvider.cs" />
+    <Compile Include="Cfg\Providers\HiLoWpfConfigurationProvider.cs" />
+    <Compile Include="Domain\Model\IncorrectGenre.cs" />
+    <Compile Include="Tests\NHibernateNotifiableEditableObjectInterceptorTestFixture.cs" />
+    <Compile Include="Utils\Helper.cs" />
+    <Compile Include="Tests\NHibernateBehaviorFixture.cs" />
+    <Compile Include="Tests\NHibernateEditableNotifiableObjectInterceptorTestFixture.cs" />
+    <Compile Include="Tests\NHibernateEditableObjectInterceptorTestFixture.cs" />
+    <Compile Include="Tests\NHibernateGeneratorsBehaviorFixture.cs" />
+    <Compile Include="Tests\NHibernateNotifiableWpfCollectionsSupportTestFixture.cs" />
+    <Compile Include="Tests\NHibernateInterceptionCompletenessAndInpcImplementationTestFixture.cs" />
+    <Compile Include="Domain\Tests\Connection\DatabaseBasicOperabilityTestFixture.cs" />
+    <Compile Include="Cfg\Environment.cs" />
+    <Compile Include="Domain\FluentMappings\GenreMap.cs" />
+    <Compile Include="Domain\Tests\Data\AlbumDataFixture.cs" />
+    <Compile Include="Domain\Tests\Data\ArtistDataFixture.cs" />
+    <Compile Include="Domain\Tests\Data\CustomerDataFixture.cs" />
+    <Compile Include="Domain\Tests\Data\EmployeeDataFixture.cs" />
+    <Compile Include="Domain\Tests\Data\GenreDataFixture.cs" />
+    <Compile Include="Domain\Tests\Data\InvoiceDataFixture.cs" />
+    <Compile Include="Domain\Tests\Data\MediaTypeDataFixture.cs" />
+    <Compile Include="Domain\Tests\Data\PlaylistDataFixture.cs" />
+    <Compile Include="Domain\Tests\Schema\SchemaTestFixture.cs" />
+    <Compile Include="Domain\Model\Album.cs" />
+    <Compile Include="Domain\Model\Artist.cs" />
+    <Compile Include="Domain\Model\Customer.cs" />
+    <Compile Include="Domain\Model\Employee.cs" />
+    <Compile Include="Domain\Model\Genre.cs" />
+    <Compile Include="Domain\Model\Invoice.cs" />
+    <Compile Include="Domain\Model\InvoiceLine.cs" />
+    <Compile Include="Domain\Model\MediaType.cs" />
+    <Compile Include="Domain\Model\Person.cs" />
+    <Compile Include="Domain\Model\Playlist.cs" />
+    <Compile Include="Domain\Model\Track.cs" />
+    <Compile Include="Cfg\TestFixtureBases\FluentConfigurationTestFixtureBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\WiringEverythingUpTestFixture.cs" />
+    <Compile Include="Domain\ViewModel\FakeViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="domain-tests.hibernate.cfg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Domain\Database\Chinook_SqlServerCompact.sdf" />
+    <Content Include="Domain\Database\Chinook_SqlServerCompact_AutoIncrementPKs.sdf" />
+    <EmbeddedResource Include="Domain\HbmMappings\Playlist.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Domain\HbmMappings\MediaType.hbm.xml.ignored" />
+    <None Include="Domain\HbmMappings\InvoiceLine.hbm.xml.ignored" />
+    <None Include="Domain\HbmMappings\Invoice.hbm.xml.ignored" />
+    <None Include="Domain\HbmMappings\Genre.hbm.xml.ignored">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Domain\HbmMappings\Employee.hbm.xml.ignored" />
+    <None Include="Domain\HbmMappings\Customer.hbm.xml.ignored" />
+    <None Include="Domain\HbmMappings\Artist.hbm.xml.ignored" />
+    <None Include="Domain\HbmMappings\Track.hbm.xml.ignored" />
+    <None Include="Domain\HbmMappings\Album.hbm.xml.ignored" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Motherlode.Common\Motherlode.Common.csproj">
+      <Project>{0477B8A7-81E0-43AD-A93C-EEA36D862A23}</Project>
+      <Name>Motherlode.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Motherlode.Data.NHibernate\Motherlode.Data.NHibernate.csproj">
+      <Project>{E67734DC-85F1-4062-A217-4E8054537415}</Project>
+      <Name>Motherlode.Data.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Motherlode.Data\Motherlode.Data.csproj">
+      <Project>{2E3EDB46-6B2E-4BC5-A2B6-EB64F5B35B66}</Project>
+      <Name>Motherlode.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Motherlode.Log4Net\Motherlode.Log4Net.csproj">
+      <Project>{F13B2588-50EB-4A88-8A16-F2AE45CFE88D}</Project>
+      <Name>Motherlode.Log4Net</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="XmlUpdate" AssemblyFile="$(MSBuildProjectDirectory)\..\..\tools\MSBuildCommunityTasks\MSBuild.Community.Tasks.dll" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="BeforeBuild">
+    <XmlUpdate XmlFileName="app.config" XPath="//configuration/appSettings/add[@key = 'targetDir']/@value" Value="$(TargetDir)" />
+    <XmlUpdate XmlFileName="app.config" XPath="//configuration/connectionStrings/add[@name = 'default']/@connectionString" Value="Data Source=$(TargetDir)Chinook_SqlServerCompact.sdf;" />
+    <XmlUpdate XmlFileName="app.config" XPath="//configuration/connectionStrings/add[@name = 'default_AutoIncrementPKs']/@connectionString" Value="Data Source=$(TargetDir)Chinook_SqlServerCompact_AutoIncrementPKs.sdf;" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Domain\Database\Chinook_SqlServerCompact_AutoIncrementPKs.sdf" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Domain\Database\Chinook_SqlServerCompact.sdf" DestinationFolder="$(TargetDir)" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
